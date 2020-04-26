@@ -4,7 +4,7 @@ body {
   line-height: 1;
 }
 
-textarea{
+textarea {
   background: transparent;
   border: none;
   resize: none;
@@ -68,4 +68,42 @@ textarea{
 .saveBtn i:hover {
   font-size: 20px;
   transition: all .3s ease-in-out;
+}
+
+table, th, td {
+  border: 1px solid black;
+  padding: 5px; 
+}
+
+table {
+  width: 100%;
+  text-align: center;
+  /* border-radius: .5; */
+}
+
+tr {
+  height: 125px;
+}
+
+.event-cells {
+  width: 80%;
+  text-align: left;
+}
+
+.time-cells {
+  width: 10%;
+}
+
+.lock-event {
+  width: 7%;
+}
+
+.arm {
+  display: none;   
+}
+.disarmed .arm {
+  display: inline;   
+}
+.disarmed .disarm {
+  display: none;   
 }

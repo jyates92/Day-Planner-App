@@ -25,7 +25,6 @@
   <div class="container">
     <!-- Timeblocks go here -->
     <table>
-
       <tr>
         <th class="time-cells-header">Time</th>
         <th class="event-cells-header">Events</th>
@@ -38,7 +37,7 @@
             <li></li>
           </ul>
         </td>
-        <td><button class="armdisarm" name="armdisarmbutton">
+        <td><button class="armdisarm" name="armdisarmbutton" id="block-one">
             <span class="disarm">Unlock</span>
             <span class="arm">Lock</span>
           </button></td>
@@ -46,7 +45,7 @@
       <tr>
         <td class="time-cells">1000</td>
         <td class="event-cells"></td>
-        <td><button class="armdisarm" name="armdisarmbutton">
+        <td><button class="armdisarm" name="armdisarmbutton" id="block-two">
             <span class="disarm">Unlock</span>
             <span class="arm">Lock</span>
           </button></td>
@@ -54,7 +53,7 @@
       <tr>
         <td class="time-cells">1100</td>
         <td class="event-cells"></td>
-        <td><button class="armdisarm" name="armdisarmbutton">
+        <td><button class="armdisarm" name="armdisarmbutton" id="block-three">
             <span class="disarm">Unlock</span>
             <span class="arm">Lock</span>
           </button></td>
@@ -62,14 +61,14 @@
       <tr>
         <td class="time-cells">1200</td>
         <td class="event-cells"></td>
-        <td><button class="armdisarm" name="armdisarmbutton">
+        <td><button class="armdisarm" name="armdisarmbutton" id="block-four">
             <span class="disarm">Unlock</span>
             <span class="arm">Lock</span>
           </button></td>
       </tr>
       <td class="time-cells">1300</td>
       <td class="event-cells"></td>
-      <td><button class="armdisarm" name="armdisarmbutton">
+      <td><button class="armdisarm" name="armdisarmbutton" id="block-five">
           <span class="disarm">Unlock</span>
           <span class="arm">Lock</span>
         </button></td>
@@ -77,14 +76,14 @@
       <tr>
         <td class="time-cells">1400</td>
         <td class="event-cells"></td>
-        <td><button class="armdisarm" name="armdisarmbutton">
+        <td><button class="armdisarm" name="armdisarmbutton" id="block-six">
             <span class="disarm">Unlock</span>
             <span class="arm">Lock</span>
           </button></td>
       </tr>
       <td class="time-cells">1500</td>
       <td class="event-cells"></td>
-      <td><button class="armdisarm" name="armdisarmbutton">
+      <td><button class="armdisarm" name="armdisarmbutton" id="block-seven">
           <span class="disarm">Unlock</span>
           <span class="arm">Lock</span>
         </button></td>
@@ -92,7 +91,7 @@
       <tr>
         <td class="time-cells">1600</td>
         <td class="event-cells"></td>
-        <td><button class="armdisarm" name="armdisarmbutton">
+        <td><button class="armdisarm" name="armdisarmbutton" id="block-eight">
             <span class="disarm">Unlock</span>
             <span class="arm">Lock</span>
           </button></td>
@@ -100,34 +99,76 @@
     </table>
 
   </div>
+
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script>
-    $("#currentDay").text(moment().format('MMMM Do YYYY, h:mm:ss a'))
+    const currentTime =  moment().format('MMMM Do YYYY, h:mm:ss a')
+    $("#currentDay").text(currentTime)
     setInterval(() => {
-      ($("#currentDay").text(moment().format('MMMM Do YYYY, h:mm:ss a')))
+      $("#currentDay").text(currentTime)
     }, 1000);
-
+    
+    
+    // time-cells
     $("body").on('click', ".armdisarm", function () {
       $(this).toggleClass('disarmed')
         .find('.ui-button-icon-primary')
         .toggleClass("ui-icon-locked ui-icon-unlocked");
+      localStorage.setItem(".event-cells", ".arm");
+      console.log($.parseJSON(localStorage.getItem(".event-cells")));
       return false;
     });
 
     $('.disarm').click(function () {
       $('.event-cells').attr('contenteditable', 'true');
-    })
+     // THIS APPLIES TO EACH ONE INSTEAD OF INDIVIDUAL ELEMENTS 
+    // let blockNumber = (this).data.val('contenteditable', 'true')
+    // (New listener for each ID)
+    // if currentHour === timeCells {
+    //   // set-color:green
+    // } else if current hour <= timeCells {
+    //   set-color: red
+    // } else if currentHour >= timeCells{
+    //   set-color:gray
+    // }
+    });
+
     $('.arm').click(function () {
       $('.event-cells').attr('contenteditable', 'false');
-    })
-    localStorage.setItem(".event-cells", ".disarm", JSON.stringify());
-    console.log($.parseJSON(localStorage.getItem(".event-cells")));
+    });
+
+    // $(document).on("click", ".SAVING information", displayMovieInfo);
+
+
+
+
+    // function setBackgroundColor() {
+    //   if ("#table-time" === <= Time) {
+    //     document.body.style.background = green;
+    //   } else ("#table-time" === Time) {
+    //     document.body.style.background = GRAY;
+    //   } else ("#table-time" === > Time) {
+    //     document.body.style.background = red;
+    //   }
+    // }
+
+
+    // let i = 9; i <= 16; 
+    // concatinate into ID's 
+    // let current element()
+    // if i < current-time change <div> to "color"
+
+    // MAKE IT DYNAMIC
+
+    // moment().format('LT');  string.split(:) parseInt check against #time-cell
+
+    // PAST PRESENT FUTURE IN CSS assign divs per time. 
 
     // Get data
     // Lock button needs to lock text and clear contenteditable.
     // Once lock button is locked it needs to store data 
-    
+
     // Colors need to change based on the current timeblock it is in and what is forthcoming and has passed.
     // if (Table-Time === <= Time) {
     //   color is green
@@ -140,7 +181,7 @@
 
     // let myStorage = window.localStorage;
     // localStorage.setItem(".event-cells"); 
-    
+
     // $("body").click(function() {
     //   if ($(this).attr("id") === "time-cells").val();
     //   task.timeCells = input;
